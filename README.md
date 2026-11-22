@@ -61,21 +61,24 @@ Multi-agent coding runs fail in predictable ways: agents burn tokens on filler p
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Quick Start (PC / Laptop & Mobile)
 
-### 1. Progressive-Disclosure Pointer (Manual — 1 Line)
-Add one line to your project's root `AGENTS.md`:
+### 💻 1. PC / Laptop Quick Start (Mac, Windows, Linux & Chromebook)
+Add the 1-line progressive-disclosure pointer to your project's root `AGENTS.md`:
 ```markdown
 - Follow `skills/agent-etiquette/SKILL.md` (Rule of 2, verified actions only, 3-agent cap) and pass handoffs via `schemas/handoff.json`.
 ```
 
-### 2. Validate Any Handoff Payload (Zero Dependencies)
+Or clone and validate any handoff payload (zero dependencies):
 ```bash
+git clone https://github.com/kelli-dotcom/agent-etiquette.git && cd agent-etiquette
 node scripts/validate-handoff.mjs path/to/handoff.json
 ```
 
+### 📱 2. Mobile Quick Start (iPhone, iPad & Android)
+
 <details>
-<summary><strong>Download &amp; Use on Mobile (iOS / Android)</strong></summary>
+<summary><strong>📱 Download &amp; Use on Mobile (iOS / Android)</strong></summary>
 
 **[Download ZIP (Mobile-Friendly)](https://github.com/kelli-dotcom/agent-etiquette/archive/refs/heads/main.zip)**
 

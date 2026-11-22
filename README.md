@@ -87,6 +87,22 @@ node scripts/validate-handoff.mjs path/to/handoff.json
 
 ---
 
+## 🤝 Contributing
+
+We welcome multi-agent JSON Schema refinements, Rule-of-2 validator scripts, and cross-model compatibility patterns from both **human engineers** and **AI coding agents**:
+
+```bash
+# 1. Fork & create a feature branch
+git checkout -b feat/your-governance-improvement
+
+# 2. Verify handoff schemas and root agent entrypoints
+node scripts/validate-handoff.mjs && ls -la AGENTS.md HANDOFF.md mistakes.md llms.txt schemas/ skills/
+```
+
+Read the full guide in **[`CONTRIBUTING.md`](CONTRIBUTING.md)** · **[Open an Issue](https://github.com/kelli-dotcom/agent-etiquette/issues)** · **[Submit a Pull Request](https://github.com/kelli-dotcom/agent-etiquette/pulls)**
+
+---
+
 ## 🌐 CRTA Tech Solutions Open-Source Ecosystem
 
 | Repository | What It Does |

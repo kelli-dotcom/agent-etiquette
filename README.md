@@ -21,6 +21,10 @@
   <img src="https://img.shields.io/badge/CRTA-Crafted-6f42c1?style=for-the-badge" alt="CRTA Crafted" />
 </p>
 
+<p align="center">
+  <img src="demo/preview.svg" alt="Agent Etiquette Handoff Validator Demo" width="90%" />
+</p>
+
 ```bash
 # Install version-pinned protocol into any repo (preserves existing AGENTS.md):
 bash scripts/install-agent-etiquette.sh --target /path/to/your-repo --version v1.0.0

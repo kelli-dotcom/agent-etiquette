@@ -1,0 +1,20 @@
+# Agent Etiquette
+
+> Model-agnostic multi-agent governance protocol, handoff JSON schemas, Rule-of-2 escalation guardrails, and verified-artifact standards for any AI coding agent.
+
+## Agent Entry Points (All Models)
+- `AGENTS.md` — Universal project guardrails and agent operating rules.
+- `HANDOFF.md` — Active session state, verification command, and next step.
+- `mistakes.md` — Permanent "Never Repeat" guardrail log.
+- `skills/` — Reusable model-agnostic skills (`SKILL.md`).
+- `schemas/` — JSON Schema contracts for structured inter-agent handoffs.
+
+## Key Paths
+- `schemas/` — Handoff & governance JSON schemas.
+- `scripts/` — Validation and installation helpers.
+- `docs/` — Protocol guides and architecture references.
+- `tests/` — Protocol validation test suite.
+- `demo/preview.svg` — Visual governance workflow preview.
+
+## Verification Command
+`ls -la AGENTS.md HANDOFF.md mistakes.md llms.txt schemas/ skills/`

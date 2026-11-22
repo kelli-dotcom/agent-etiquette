@@ -40,7 +40,7 @@ Multi-agent coding runs fail in predictable ways: agents burn tokens on filler p
 - **Built For:** Solo builders, engineering teams, and anyone orchestrating AI coding assistants across desktop, cloud, or mobile workflows.
 - **When to Use It:** Drop into any repository at project kickoff or before kicking off multi-agent / long-running refactors.
 - **Runs Everywhere:** macOS, Linux, Windows PowerShell, WSL, GitHub Codespaces, Antigravity, Gemini, Claude, and ChatGPT — zero external dependencies.
-- **Proven in Production:** Governs the 4-agent workflow inside **[Openflex](https://github.com/kelli-dotcom/openflex)**.
+- **Proven in Production:** Governs the 4-agent workflow inside **Openflex** *(CRTA Proprietary Platform)*.
 
 ---
 
@@ -110,7 +110,7 @@ Read the full guide in **[`CONTRIBUTING.md`](CONTRIBUTING.md)** · **[Open an Is
 
 | Repository | What It Does |
 | :--- | :--- |
-| **[openflex](https://github.com/kelli-dotcom/openflex)** | Zero-cost, anti-ghost, Remote-Truth job board (61 verified ATS feeds) |
+| **Openflex** *(CRTA Proprietary Platform)* | Zero-cost, anti-ghost, Remote-Truth job board (61 verified ATS feeds) |
 | **[feather-themes](https://github.com/kelli-dotcom/feather-themes)** | 1,092 photobiology-calibrated, 0-dep WCAG AA/AAA themes for web & apps |
 | **[agent-etiquette](https://github.com/kelli-dotcom/agent-etiquette)** | Multi-agent workflow rules, JSON handoff schemas & Rule of 2 loop caps |
 | **[archetype-agent-vault](https://github.com/kelli-dotcom/archetype-agent-vault)** | 7 character-driven AI coding agent suites (27 specialists) |

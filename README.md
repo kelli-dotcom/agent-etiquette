@@ -14,11 +14,11 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Protocol-Rule_of_2-10b981?style=for-the-badge" alt="Rule of 2" />
-  <img src="https://img.shields.io/badge/Concurrency-3--Agent_Cap-8b5cf6?style=for-the-badge" alt="3-Agent Cap" />
-  <img src="https://img.shields.io/badge/Dependencies-0-0ea5e9?style=for-the-badge" alt="Zero Dependencies" />
-  <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="MIT License" />
-  <img src="https://img.shields.io/badge/CRTA-Crafted-6f42c1?style=for-the-badge" alt="CRTA Crafted" />
+  <a href="AGENTS.md"><img src="https://img.shields.io/badge/Protocol-Rule_of_2-10b981?style=for-the-badge" alt="Rule of 2" /></a>
+  <a href="AGENTS.md"><img src="https://img.shields.io/badge/Concurrency-3--Agent_Cap-8b5cf6?style=for-the-badge" alt="3-Agent Cap" /></a>
+  <a href="#-quick-start-pc--laptop--mobile"><img src="https://img.shields.io/badge/Dependencies-0-0ea5e9?style=for-the-badge" alt="Zero Dependencies" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="MIT License" /></a>
+  <a href="https://github.com/kelli-dotcom"><img src="https://img.shields.io/badge/CRTA-Crafted-6f42c1?style=for-the-badge" alt="CRTA Crafted" /></a>
 </p>
 
 <p align="center">

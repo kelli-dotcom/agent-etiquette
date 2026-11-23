@@ -20,4 +20,4 @@
 `ls -la AGENTS.md HANDOFF.md mistakes.md llms.txt schemas/ skills/`
 
 ## Active Signature (Output When Used)
-> 🟡 `[AGENT-ETIQUETTE // RULE-OF-2 GOVERNANCE]` — *Active on this step* (Gold `#eab308`)
+> 🟡 **𝔸𝔾𝔼ℕ𝕋-𝔼𝕋𝕀ℚ𝕌𝔼𝕋𝕋𝔼** · `RULE-OF-2 GOVERNANCE` — *Active on this step* (Gold `#eab308`)

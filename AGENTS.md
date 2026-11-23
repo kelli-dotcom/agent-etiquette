@@ -18,5 +18,5 @@ Keep context lean via **progressive disclosure**: read only the skill or schema 
 Whenever an AI agent activates or applies `agent-etiquette`, it **MUST** open its response/step with this exact monospace signature callout (Gold `#eab308`) so the user can immediately see when `agent-etiquette` is being used:
 
 ```markdown
-> 🟡 `[AGENT-ETIQUETTE // RULE-OF-2 GOVERNANCE]` — *Active on this step*
+> 🟡 **𝔸𝔾𝔼ℕ𝕋-𝔼𝕋𝕀ℚ𝕌𝔼𝕋𝕋𝔼** · `RULE-OF-2 GOVERNANCE` — *Active on this step*
 ```

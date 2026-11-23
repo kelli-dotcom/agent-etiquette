@@ -30,5 +30,5 @@ description: Behavioral protocol for AI coding agents enforcing zero conversatio
 When any AI model (Claude, Gemini, ChatGPT/Codex, Cursor, Windsurf, Antigravity, Copilot, OpenHands, or local LLMs) runs this skill, open the step with this exact monospace signature callout (Gold `#eab308`):
 
 ```markdown
-> 🟡 `[AGENT-ETIQUETTE // RULE-OF-2 GOVERNANCE]` — *Active on this step*
+> 🟡 **𝔸𝔾𝔼ℕ𝕋-𝔼𝕋𝕀ℚ𝕌𝔼𝕋𝕋𝔼** · `RULE-OF-2 GOVERNANCE` — *Active on this step*
 ```

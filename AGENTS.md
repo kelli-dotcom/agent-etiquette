@@ -13,3 +13,10 @@ Keep context lean via **progressive disclosure**: read only the skill or schema 
 | Core behavioral protocol (zero filler, Rule of 2, verified actions) | `skills/agent-etiquette/SKILL.md` |
 | Structured agent-to-agent handoff format | `schemas/handoff-schema.md` / `schemas/handoff.json` |
 | Verify an agent obeys the protocol | `tests/stress-tests.md` |
+
+## 🎨 Agent Active Signature (Visual Identification)
+Whenever an AI agent activates or applies `agent-etiquette`, it **MUST** open its response/step with this exact monospace signature callout (Gold `#eab308`) so the user can immediately see when `agent-etiquette` is being used:
+
+```markdown
+> 🟡 `[AGENT-ETIQUETTE // RULE-OF-2 GOVERNANCE]` — *Active on this step*
+```

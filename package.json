@@ -1,0 +1,20 @@
+{
+  "name": "agent-etiquette",
+  "version": "1.0.0",
+  "description": "Multi-agent workflow rules, handoff schemas, and loop caps for AI coding agents.",
+  "type": "module",
+  "main": "scripts/validate-handoff.mjs",
+  "author": "CRTA Tech Solutions",
+  "license": "MIT",
+  "files": [
+    "skills/",
+    "scripts/",
+    "schemas/",
+    "docs/",
+    "preview/",
+    "README.md",
+    "CHANGELOG.md",
+    "llms.txt",
+    "LICENSE"
+  ]
+}

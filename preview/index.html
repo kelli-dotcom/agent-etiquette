@@ -3,96 +3,248 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Agent Etiquette — Live Multi-Agent Handoff &amp; Rule-of-2 Validator Demo</title>
+  <title>Agent Etiquette — Live Handoff Contract Validator &amp; Rule-of-2 Simulator</title>
   <style>
-    :root { --bg:#0b1120; --panel:#111827; --card:#1e293b; --border:#334155; --text:#f8fafc; --muted:#94a3b8; --emerald:#10b981; --amber:#f59e0b; --rose:#f43f5e; }
-    * { box-sizing:border-box; margin:0; padding:0; }
-    body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; padding:24px; }
-    .container { max-width:1060px; margin:0 auto; }
-    .header { display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); padding-bottom:14px; margin-bottom:18px; }
-    .badge { padding:5px 12px; border-radius:4px; font-size:12px; font-weight:700; font-family:ui-monospace,monospace; }
-    .grid { display:grid; grid-template-columns:340px 1fr; gap:18px; }
-    .panel { background:var(--panel); border:1px solid var(--border); border-radius:6px; padding:16px; }
-    .panel h2 { font-size:13px; text-transform:uppercase; color:var(--muted); margin-bottom:12px; }
-    .btn { width:100%; text-align:left; background:var(--card); color:var(--text); border:1px solid var(--border); padding:10px 12px; border-radius:4px; margin-bottom:8px; cursor:pointer; font-size:13px; font-weight:600; }
-    .btn.active { border-color:var(--emerald); color:var(--emerald); }
-    .code { background:#070b14; border:1px solid var(--border); border-radius:6px; padding:14px; font-family:ui-monospace,monospace; font-size:12px; white-space:pre-wrap; color:#a7f3d0; }
+    :root {
+      --bg: #141106;
+      --surface: #201b0a;
+      --card: #2c240d;
+      --border: #524317;
+      --text: #fefce8;
+      --muted: #d4c794;
+      --gold: #eab308;
+      --green: #4ade80;
+      --red: #fb7185;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Source Sans 3", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      padding: 26px 20px 54px;
+      line-height: 1.5;
+    }
+    h1, h2, h3 { font-family: "Lora", Georgia, serif; font-weight: 600; line-height: 1.25; }
+    .wrap { max-width: 1120px; margin: 0 auto; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .topbar {
+      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 14px;
+      border-bottom: 1px solid var(--border); padding-bottom: 16px; margin-bottom: 20px;
+    }
+    .btn, .btn-sec {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 44px; padding: 10px 16px; border-radius: 10px; font-weight: 600;
+      font-size: 0.92rem; cursor: pointer; text-decoration: none; font-family: inherit; color: var(--text);
+    }
+    .btn { background: var(--surface); border: 2px solid var(--gold); }
+    .btn-sec { background: var(--bg); border: 1px solid var(--border); }
+    .grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 18px; }
+    @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+    .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+    textarea {
+      width: 100%; min-height: 290px; background: #0d0b04; color: #fef08a;
+      border: 1px solid var(--border); border-radius: 8px; padding: 14px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.82rem; line-height: 1.45;
+    }
+    .status-box { padding: 12px 14px; border-radius: 8px; border: 1px solid var(--border); background: #0d0b04; font-size: 0.88rem; }
+    .pass { border-color: var(--green); color: var(--green); }
+    .fail { border-color: var(--red); color: var(--red); }
+    .slots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .slot {
+      padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: #0d0b04;
+      text-align: center; font-size: 0.78rem;
+    }
+    .slot.active { border-color: var(--gold); background: var(--card); color: #fef08a; }
+    .slot.blocked { border-color: var(--red); color: var(--red); border-style: dashed; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
+  <div class="wrap">
+    <header class="topbar">
       <div>
-        <h1 style="font-size:22px;font-weight:800;">Agent Etiquette · Live Handoff &amp; Rule-of-2 Simulator</h1>
-        <p style="font-size:13px;color:var(--muted);">Max 3 Active Agents · Verified Artifacts Only · Automatic Rule-of-2 Escalation</p>
+        <div class="mono" style="color:var(--gold);font-size:0.8rem;font-weight:700;">🟡 AGENT-ETIQUETTE // LIVE CONTRACT VALIDATOR &amp; RULE-OF-2 SIMULATOR</div>
+        <h1 style="margin:4px 0 6px;">Test Multi-Agent Handoffs &amp; Loop Caps Live</h1>
+        <p style="color:var(--muted);font-size:0.95rem;">Validate real JSON handoffs against <code>schemas/handoff.json</code> and trigger the Rule-of-2 circuit breaker and 3-agent concurrency cap in real time.</p>
       </div>
-      <div id="statusBadge" class="badge" style="background:rgba(16,185,129,0.15);color:var(--emerald);border:1px solid var(--emerald);">STATUS: PASS</div>
-    </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button id="copyBtn" class="btn" type="button">Copy Valid Handoff JSON</button>
+        <a class="btn-sec" href="https://github.com/kelli-dotcom/agent-etiquette" target="_blank" rel="noopener">GitHub Repo ↗</a>
+      </div>
+    </header>
+
     <div class="grid">
-      <div class="panel">
-        <h2>Simulate Handoff State</h2>
-        <button class="btn active" id="b0" onclick="setScenario(0)">1. Clean Gatekeeper Pass (Retry 0)</button>
-        <button class="btn" id="b1" onclick="setScenario(1)">2. Disguised-Hybrid Blocked (Retry 1)</button>
-        <button class="btn" id="b2" onclick="setScenario(2)">3. Rule-of-2 Escalation Halt (Retry 2)</button>
-      </div>
-      <div class="panel">
-        <h2>Validated JSON Handoff Payload (OpenFlexAgentHandoff)</h2>
-        <div id="payloadBox" class="code"></div>
-      </div>
+      <section class="panel">
+        <div class="mono" style="color:var(--gold);font-size:0.78rem;">USE CASE 01 · LIVE SCHEMAS/HANDOFF.JSON VALIDATOR</div>
+        <h2 style="font-size:1.2rem;">Edit or Test Real Agent Handoff Payloads</h2>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <button class="btn-sec" type="button" onclick="loadPreset('pass')">Load Passing Handoff</button>
+          <button class="btn-sec" type="button" onclick="loadPreset('blocked')">Load Rule-of-2 Escalation</button>
+          <button class="btn-sec" type="button" onclick="loadPreset('invalid')">Load Invalid Payload</button>
+        </div>
+        <textarea id="jsonInput" oninput="validateJson()" aria-label="AgentHandoff JSON payload"></textarea>
+        <div id="validationOut" class="status-box mono"></div>
+      </section>
+
+      <section style="display:flex;flex-direction:column;gap:18px;">
+        <article class="panel">
+          <div class="mono" style="color:var(--gold);font-size:0.78rem;">USE CASE 02 · RULE-OF-2 CIRCUIT BREAKER</div>
+          <h2 style="font-size:1.2rem;">Stop Infinite Retry Loops</h2>
+          <p style="color:var(--muted);font-size:0.88rem;">When a build, test, or verification command fails twice in a row with the same error, the agent halts immediately and emits a `blocked` handoff.</p>
+          <div id="retryStatus" class="status-box mono pass">Retry Count: 0 / 2 — RUNNING NORMALLY</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="btn" type="button" onclick="triggerFailure()">Simulate Verification Failure</button>
+            <button class="btn-sec" type="button" onclick="resetRetries()">Reset</button>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="mono" style="color:var(--gold);font-size:0.78rem;">USE CASE 03 · 3-AGENT CONCURRENCY CAP</div>
+          <h2 style="font-size:1.2rem;">Prevent Context &amp; RAM Thrashing</h2>
+          <div id="agentSlots" class="slots"></div>
+          <div id="capMsg" class="status-box mono">Active agents: 1 / 3 (safe)</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="btn" type="button" onclick="spawnAgent()">Spawn Specialist Agent</button>
+            <button class="btn-sec" type="button" onclick="resetAgents()">Reset to 1</button>
+          </div>
+        </article>
+      </section>
     </div>
   </div>
+
   <script>
-    const SCENARIOS = [
-      {
-        badge: "STATUS: PASS (LAUNCH UNLOCKED)", color: "#10b981",
-        payload: {
-          task_id: "OF-2026-sync-61",
-          from_agent: "Zero-Mercy Gatekeeper",
-          to_agent: "launch-director",
-          status: "pass",
-          retry_count: 0,
-          active_agents_count: 3,
-          verified_artifacts: ["src/lib/scrapers/greenhouse.ts", "src/lib/ai/verify-job.ts", "greenhouse:gitlab"],
-          gatekeeper_flags: []
-        }
+    const REQUIRED = ["from_agent", "to_agent", "task_id", "status", "verified_artifacts", "blockers", "next_action"];
+    const STATUSES = new Set(["in_progress", "blocked", "ready_for_review", "done"]);
+
+    const PRESETS = {
+      pass: {
+        from_agent: "trojan-janitor",
+        to_agent: "zero-mercy-gatekeeper",
+        task_id: "sync-ats-batch-20",
+        status: "ready_for_review",
+        verified_artifacts: ["src/lib/data/live-ats-jobs.ts", "src/lib/ai/verify-job.ts"],
+        blockers: [],
+        next_action: "Run tsc --noEmit and confirm 0 leaked hybrid roles."
       },
-      {
-        badge: "STATUS: BLOCKED (RETRY 1 / 2)", color: "#f59e0b",
-        payload: {
-          task_id: "OF-2026-audit-19",
-          from_agent: "Zero-Mercy Gatekeeper",
-          to_agent: "Trojan Janitor",
-          status: "blocked",
-          retry_count: 1,
-          active_agents_count: 2,
-          verified_artifacts: ["src/lib/ai/verify-job.ts"],
-          gatekeeper_flags: ["DISGUISED_HYBRID: '3 days in office required'", "MISSING_SALARY_BOUNDS"]
-        }
+      blocked: {
+        from_agent: "zero-mercy-gatekeeper",
+        to_agent: "the-boss",
+        task_id: "push-feather-themes",
+        status: "blocked",
+        verified_artifacts: ["preview/index.html", "assets/hero-banner.svg"],
+        blockers: ["Rule of 2 triggered: git push rejected twice (fetch first — remote active)."],
+        next_action: "Wait for remote session to finish, pull origin/main, then rebase cleanly."
       },
-      {
-        badge: "STATUS: ESCALATED_RULE_OF_2 (HALT)", color: "#f43f5e",
-        payload: {
-          task_id: "OF-2026-audit-19",
-          from_agent: "Zero-Mercy Gatekeeper",
-          to_agent: "The Boss",
-          status: "escalated_rule_of_2",
-          retry_count: 2,
-          active_agents_count: 1,
-          verified_artifacts: ["src/lib/scrapers/audit-links.ts"],
-          gatekeeper_flags: ["RULE_OF_2_TRIGGERED: Halted automatic retries for orchestrator review"]
+      invalid: {
+        from_agent: "builder",
+        to_agent: "",
+        task_id: "demo-broken",
+        status: "almost_done",
+        verified_artifacts: "not-an-array",
+        extra_unallowed_field: true
+      }
+    };
+
+    function loadPreset(key) {
+      document.getElementById("jsonInput").value = JSON.stringify(PRESETS[key], null, 2);
+      validateJson();
+    }
+
+    function validateJson() {
+      const box = document.getElementById("validationOut");
+      let obj;
+      try {
+        obj = JSON.parse(document.getElementById("jsonInput").value);
+      } catch (e) {
+        box.className = "status-box mono fail";
+        box.textContent = "FAIL: Invalid JSON syntax — " + e.message;
+        return;
+      }
+      if (!obj || typeof obj !== "object" || Array.isArray(obj)) {
+        box.className = "status-box mono fail";
+        box.textContent = "FAIL: Root value must be a JSON object.";
+        return;
+      }
+      const errors = [];
+      for (const k of REQUIRED) {
+        if (!(k in obj)) errors.push(`Missing required field: "${k}"`);
+      }
+      for (const k of Object.keys(obj)) {
+        if (!REQUIRED.includes(k)) errors.push(`Disallowed extra property (additionalProperties: false): "${k}"`);
+      }
+      for (const s of ["from_agent", "to_agent", "task_id", "next_action"]) {
+        if (s in obj && (typeof obj[s] !== "string" || obj[s].trim().length === 0)) {
+          errors.push(`"${s}" must be a non-empty string`);
         }
       }
-    ];
-    function setScenario(i) {
-      document.querySelectorAll(".btn").forEach((b, idx) => b.classList.toggle("active", idx === i));
-      const s = SCENARIOS[i];
-      const badge = document.getElementById("statusBadge");
-      badge.textContent = s.badge;
-      badge.style.color = s.color;
-      badge.style.borderColor = s.color;
-      document.getElementById("payloadBox").textContent = JSON.stringify(s.payload, null, 2);
+      if ("status" in obj && !STATUSES.has(obj.status)) {
+        errors.push(`"status" must be one of: in_progress, blocked, ready_for_review, done`);
+      }
+      for (const a of ["verified_artifacts", "blockers"]) {
+        if (a in obj && (!Array.isArray(obj[a]) || obj[a].some(x => typeof x !== "string"))) {
+          errors.push(`"${a}" must be an array of strings`);
+        }
+      }
+      if (errors.length === 0) {
+        box.className = "status-box mono pass";
+        box.textContent = `✓ PASS — Valid AgentHandoff contract (${obj.from_agent} -> ${obj.to_agent} · status: ${obj.status})`;
+      } else {
+        box.className = "status-box mono fail";
+        box.textContent = "✕ FAIL (" + errors.length + " violation(s)):\n- " + errors.join("\n- ");
+      }
     }
-    setScenario(0);
+
+    let retries = 0;
+    function triggerFailure() {
+      retries = Math.min(2, retries + 1);
+      const el = document.getElementById("retryStatus");
+      if (retries < 2) {
+        el.className = "status-box mono";
+        el.style.borderColor = "var(--gold)";
+        el.textContent = `Retry Count: 1 / 2 — 1 surgical fix allowed before halt`;
+      } else {
+        el.className = "status-box mono fail";
+        el.textContent = `✕ CIRCUIT BREAKER TRIPPED (2 / 2) — HALT & ESCALATE (loaded blocked handoff)`;
+        loadPreset("blocked");
+      }
+    }
+    function resetRetries() {
+      retries = 0;
+      const el = document.getElementById("retryStatus");
+      el.className = "status-box mono pass";
+      el.textContent = "Retry Count: 0 / 2 — RUNNING NORMALLY";
+    }
+
+    let agents = 1;
+    function renderAgents(blockedAttempt = false) {
+      document.getElementById("agentSlots").innerHTML = [1, 2, 3, 4].map(n => {
+        if (n <= agents) return `<div class="slot active"><strong>Agent ${n}</strong><div>ACTIVE</div></div>`;
+        if (n === 4) return `<div class="slot blocked"><strong>Agent 4</strong><div>CAP BLOCKED</div></div>`;
+        return `<div class="slot"><strong>Slot ${n}</strong><div>IDLE</div></div>`;
+      }).join("");
+      const msg = document.getElementById("capMsg");
+      if (blockedAttempt) {
+        msg.className = "status-box mono fail";
+        msg.textContent = "✕ BLOCKED: Concurrency cap is 3 active agents max. Finish or hand off a slot first.";
+      } else {
+        msg.className = "status-box mono pass";
+        msg.textContent = `Active agents: ${agents} / 3 (within concurrency cap)`;
+      }
+    }
+    function spawnAgent() {
+      if (agents >= 3) { renderAgents(true); return; }
+      agents++;
+      renderAgents(false);
+    }
+    function resetAgents() { agents = 1; renderAgents(false); }
+
+    document.getElementById("copyBtn").onclick = () => {
+      navigator.clipboard.writeText(document.getElementById("jsonInput").value);
+      document.getElementById("copyBtn").textContent = "✓ Copied JSON!";
+      setTimeout(() => { document.getElementById("copyBtn").textContent = "Copy Valid Handoff JSON"; }, 2000);
+    };
+
+    loadPreset("pass");
+    renderAgents(false);
   </script>
 </body>
 </html>

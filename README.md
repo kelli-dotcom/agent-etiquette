@@ -1,3 +1,5 @@
+[![Agent Etiquette — Rule-of-2 Governance & JSON Handoff Contracts](demo/hero-banner.svg)](https://kelli-dotcom.github.io/agent-etiquette/preview/)
+
 # Agent Etiquette
 
 Come in. Everything here has its place, and nothing is missing.
@@ -9,6 +11,7 @@ Multi-agent workflow rules, structured JSON handoff schemas, and Rule-of-2 loop 
 - `skills/agent-etiquette/` — the skill
 - `schemas/` — JSON handoff schemas
 - `scripts/` — install and handoff validation
+- [Live Handoff Validator & Rule-of-2 Simulator](https://kelli-dotcom.github.io/agent-etiquette/preview/) (`preview/index.html`) — validate handoff JSON and trigger the Rule-of-2 breaker live
 
 **Use it**
 

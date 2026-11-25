@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+  <title>Agent Etiquette logo — a bow tie</title>
+  <rect x="4" y="4" width="232" height="232" rx="52" fill="#171306"/>
+  <g fill="#a78bfa">
+    <polygon points="112,120 58,80 58,160"/>
+    <polygon points="128,120 182,80 182,160"/>
+    <rect x="110" y="102" width="20" height="36" rx="7"/>
+  </g>
+</svg>
